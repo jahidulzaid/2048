@@ -1,0 +1,364 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&family=Secular+One&display=swap");
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+@media (max-width: 400px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+h1 {
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
+  color: inherit;
+}
+
+a {
+  min-width: 124px;
+  min-height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #f5c7af;
+  text-decoration: none;
+  
+}
+
+a:hover, a:focus {
+  color: white;
+}
+
+a:hover svg, a:focus svg {
+  fill: white;
+  width: 40px;
+  height: 40px;
+}
+
+a:focus {
+  outline: none;
+}
+
+a:active {
+  background-color: #193824;
+}
+
+svg {
+  fill: #f5c7af;
+  margin-right: .4em;
+}
+
+footer {
+  display: -webkit-box;
+  align-self: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: #193824;
+  color: #f5c7af;
+  padding: 0 1em 0 1em;
+}
+
+footer div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 124px;
+  min-height: 50px;
+}
+
+@media (max-height: 700px) {
+  footer {
+    position: initial;
+  }
+}
+
+@media (max-width: 560px) {
+  footer {
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  footer > * {
+    -ms-flex-preferred-size: 35%;
+        flex-basis: 35%;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  color: #0b6d9b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #2d312e;
+}
+
+#title {
+  color: #193824;
+  font-size: 3em;
+  margin: .7rem;
+  padding: 0.7rem 1.5rem;
+  border: #2b5038 solid 0.3rem;
+  border-radius: 1rem;
+}
+#author{
+  display: flex;
+  align-self: center;
+  flex-grow: 200px;
+}
+
+#panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 98vw;
+  width: 25rem;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#scoreboard {
+  padding-left: 1.4em;
+  width: 12em;
+}
+
+#score {
+  margin-left: .4em;
+  padding-right: .3em;
+}
+
+#plus {
+  border-radius: .4em;
+  padding: .3em;
+  opacity: 0;
+}
+
+#play {
+  color: #193824;
+  font-size: 1em;
+  font-weight: 700;
+  width: 7em;
+  height: 3em;
+  border: #2b5038 solid 0.3rem;
+  border-radius: .4em;
+  margin: 1em;
+  cursor: pointer;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+#play:hover, #play:focus {
+  -webkit-box-shadow: 0 0 .2em .2em lightgreen;
+          box-shadow: 0 0 .2em .2em lightgreen;
+  border-color: green;
+}
+
+#play:active {
+  color: #0df259;
+}
+
+#container {
+  position: relative;
+  margin-top: .4em;
+  margin-bottom: 1em;
+}
+
+#grid {
+  padding: 0.8em;
+  display: -ms-grid;
+  display: grid;
+  grid: repeat(4, minmax(0, 1fr))/repeat(4, minmax(0, 1fr));
+  gap: 0.8em;
+  background-color: #2b5038;
+  max-width: 98vw;
+  width: 25rem;
+  max-height: 98vw;
+  height: 25rem;
+  border-radius: 0.8em;
+}
+
+#cover {
+  position: absolute;
+  top: 0;
+  padding: 0.8em;
+  display: -ms-grid;
+  display: grid;
+  grid: repeat(4, minmax(0, 1fr))/repeat(4, minmax(0, 1fr));
+  gap: 0.8em;
+  background-color: rgba(191, 64, 64, 0);
+  max-width: 98vw;
+  width: 25rem;
+  max-height: 98vw;
+  height: 25rem;
+  border-radius: 0.8em;
+}
+
+@media (max-width: 400px) {
+  #grid, #cover {
+    gap: 6px;
+    padding: 6px;
+  }
+}
+
+#cover .square {
+  opacity: 0;
+}
+
+.square {
+  background-color: #f5c7af;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: .4em;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.square h1 {
+  font-family: 'Secular One', sans-serif;
+}
+
+.n2 {
+  background-color: #fef6e7;
+  color: #2b5038;
+}
+
+.n4 {
+  background-color: #f7c664;
+  color: #2b5038;
+}
+
+.n8 {
+  background-color: #f6a14c;
+  color: #2b5038;
+}
+
+.n16 {
+  background-color: #f47434;
+}
+
+.n32 {
+  background-color: #e34a2b;
+}
+
+.n64 {
+  background-color: #d91c1c;
+  color: #f5c7af;
+}
+
+.n128 {
+  background-color: #f7f76e;
+  color: #2b5038;
+}
+
+.n256 {
+  background-color: #c1f655;
+  color: #2b5038;
+}
+
+.n512 {
+  background-color: #7af53d;
+}
+
+.n1024 {
+  background-color: #25f425;
+}
+
+.n1024 h1 {
+  font-size: 1.8rem;
+}
+
+.n2048 {
+  background-color: #0df259;
+}
+
+.n2048 h1 {
+  font-size: 1.8rem;
+}
+
+.n4096 {
+  background-color: #0b2eda;
+  color: #f5c7af;
+}
+
+.n4096 h1 {
+  font-size: 1.8rem;
+}
+
+.n8192 {
+  background-color: #c20a85;
+  color: #f5c7af;
+}
+
+.n8192 h1 {
+  font-size: 1.8rem;
+}
+
+@media (max-width: 300px) {
+  .square h1 {
+    font-size: 1.6em;
+  }
+}
+
+.gameover {
+  opacity: .4;
+}
+
+#gameover {
+  display: none;
+  font-size: 4em;
+  font-weight: 900;
+  position: relative;
+  top: -16rem;
+  height: 0;
+  text-align: center;
+}

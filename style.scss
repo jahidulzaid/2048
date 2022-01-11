@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&family=Secular+One&display=swap');
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+$mainBackground: #30df6a;
+$secondBackground: #b86c44;
+$secondColor: #99e651;
+$fontColor: #b954ac;
+$transparent: hsla(0, 70%, 55%, 0);
+$size: 25rem;
+$gap: .8em;
+
+@media (max-width: 400px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+h1 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  color: inherit;
+}
+
+a {
+  min-width: 124px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $secondBackground;
+
+  &:hover,
+  &:focus {
+    color: white;
+
+    svg {
+      fill: rgb(255, 255, 255);
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: $fontColor;
+  }
+}
+
+svg {
+  fill: $secondBackground;
+  margin-right: .4em;
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: $fontColor;
+  color: $secondBackground;
+  padding: 0 1em 0 1em;
+
+  div {
+    display: flex;
+    min-width: 124px;
+    min-height: 50px;
+  }
+}
+
+@media (max-height: 700px) {
+  footer {
+    position: initial;
+  }
+}
+
+@media (max-width: 560px) {
+  footer {
+    justify-content: space-evenly;
+
+    >* {
+      flex-basis: 35%;
+      justify-content: flex-start;
+    }
+  }
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  color: $fontColor;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $mainBackground;
+}
+
+#title {
+  color: $fontColor;
+  font-size: 3em;
+  margin: .7rem;
+  padding: 0.7rem 1.5rem;
+  border: $secondColor solid .3rem;
+  border-radius: 1rem;
+}
+
+#panel {
+  display: flex;
+  max-width: 98vw;
+  width: $size;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#scoreboard {
+  padding-left: 1.4em;
+  width: 12em;
+}
+
+#score {
+  margin-left: .4em;
+  padding-right: .3em;
+}
+
+#plus {
+  border-radius: .4em;
+  padding: .3em;
+  opacity: 0;
+}
+
+#play {
+  color: $fontColor;
+  font-size: 1em;
+  font-weight: 700;
+  width: 7em;
+  height: 3em;
+  border: $secondColor solid .3rem;
+  border-radius: .4em;
+  margin: 1em;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 .2em .2em lightgreen;
+    border-color: rgb(2, 79, 179);
+  }
+
+  &:active {
+    color: #035f83;
+  }
+}
+
+#container {
+  position: relative;
+  margin-top: .4em;
+  margin-bottom: 1em;
+}
+
+@mixin grid($color) {
+  padding: $gap;
+  display: grid;
+  grid: repeat(4, minmax(0, 1fr))/ repeat(4, minmax(0, 1fr));
+  gap: $gap;
+  background-color: $color;
+  max-width: 98vw;
+  width: $size;
+  max-height: 98vw;
+  height: $size;
+  border-radius: $gap;
+}
+
+#grid {
+  @include grid($secondColor);
+}
+
+#cover {
+  position: absolute;
+  top: 0;
+  @include grid($transparent);
+}
+
+@media (max-width: 400px) {
+
+  #grid,
+  #cover {
+    gap: 6px;
+    padding: 6px;
+  }
+}
+
+
+#cover .square {
+  opacity: 0;
+}
+
+.square {
+  background-color: $secondBackground;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: .4em;
+  transform: translate(0, 0);
+}
+
+.square h1 {
+  font-family: 'Secular One', sans-serif;
+}
+
+$hue: 50;
+$light: 100;
+$sat: 90;
+$n: 2;
+
+@while $n<10000 {
+  $light: $light - 5;
+
+  @if $n==32 {
+    $sat: 77;
+  }
+
+  @if $n==128 {
+    $hue: 60;
+    $light: 70;
+    $sat: 90;
+  }
+
+  @else if $n==4 {
+    $light: 68;
+  }
+
+  @else if $n>2048 {
+    $hue: $hue + 90;
+  }
+
+  @else if $n>64 {
+    $hue: $hue + 20;
+  }
+
+  @else {
+    $hue: $hue - 10;
+  }
+
+  .n#{$n} {
+    background-color: hsl($hue, $sat, $light);
+
+    @if $n>1000 {
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @if $light>60 {
+      color: $secondColor;
+    }
+
+    @if $light<50 {
+      color: $secondBackground;
+    }
+  }
+
+  $n: $n*2;
+}
+
+@media (max-width: 300px) {
+  .square h1 {
+    font-size: 1.6em;
+  }
+}
+
+.gameover {
+  opacity: .4;
+}
+
+#gameover {
+  display: none;
+  font-size: 4em;
+  font-weight: 900;
+  position: relative;
+  top: -16rem;
+  height: 0;
+  text-align: center;
+}
