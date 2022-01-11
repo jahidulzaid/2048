@@ -48,11 +48,6 @@ let delay=200 //step/animation timer length in milliseconds
 let elementsToUpdate=[] //queue for elements to be updated per step
 let elementsToGrow=[] //elements that are result of combination
 
-//For testing purpose
-//let testArr=[[2,4,2,0], [4,4,4,0], [0,4,0,0], [4,4,0,0], [4,4,2,2], [4,2,2,4], [4,0,0,4], [0,2,0,2], [0,2,4,2]]
-//let testData=[0,2,16,4,2,512,64,32,4096,4,0,128,256,8,1024,2048]
-
-//creates list of empty spots(with grid index)
 function emptySpots(){
   return data.reduce((empty, n, i)=>n===0 ? empty.concat(i) : empty, [])
 }
@@ -63,7 +58,6 @@ function rollTwoOrFour(){
   return 2
 }
 
-//parses data in a grid of rows/columns
 function dataSets(direction){
   let sets=[]
   let counter=[0, 1, 2, 3]
@@ -82,7 +76,7 @@ function dataSets(direction){
   return sets
 }
 
-//check if anywhere on the grid there are repeating consecutive numbers
+
 function hasConsecutive(){
   let rows=dataSets('right')
   let cols=dataSets('down')
@@ -134,7 +128,6 @@ function rollRandomEmptySpot(){
   updateSquare(twoOrFour, index)
   updateSquare(twoOrFour, index, true)
   if (empty.length===1 && !hasConsecutive()) gameOver()
-  //console.log(`rolled random number ${twoOrFour} at index ${index}`)
 }
 
 //checks if a set of four numbers can be shifted
@@ -162,7 +155,6 @@ function canChangeSet(set, reverse=false){
 }
 
 function moveSquare(direction, index, steps){
-  //console.log(`start moving cover on index ${index}`)
   let squareCover=squareCovers[index]
   squareCover.style.opacity=1
   squareCover.style.zIndex=steps+1
@@ -184,10 +176,8 @@ function moveSquare(direction, index, steps){
 
 function finishBoardUpdate(){
   stepTimer=false
-  //console.log(`updating ${elementsToUpdate.join('|')}...`)
   elementsToUpdate.forEach(([number, index, newIndex])=>{
 
-    //console.log(`reset cover ${index} & updating grid index ${newIndex} with number ${number}`)
     squareCovers[index].removeAttribute('style')
 
     updateSquare(number, newIndex)
@@ -291,7 +281,6 @@ function shiftDirection(direction){
 }
 
 function control(e){
-  //console.log('...key has been pressed!')
   switch(e.keyCode){
     case 37:
       shiftDirection('left')
@@ -374,24 +363,3 @@ function handleTouchMove(evt) {
   xDown = null;
   yDown = null;                                             
 };
-
-/*
-// COLOR PALETTE
-const body=document.body
-const palette=document.createElement('div')
-palette.style.display='flex'
-body.appendChild(palette)
-for (let i=2; i<10000; i*=2){
-  let box=document.createElement('div')
-  box.classList.add('square')
-  box.style.width='60px'
-  box.style.height='60px'
-  box.classList.add('n'+i)
-  let number=document.createElement('h1')
-  number.textContent=i
-  number.style.marginBlockEnd=0
-  number.style.marginBlockStart=0
-  box.appendChild(number)
-  palette.appendChild(box)
-}
-*/
